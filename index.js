@@ -25,13 +25,72 @@
     $tables.data('eternal', true);
 
     $tables.each(function() {
-			var $table = $(this);
+      var $table = $(this);
       var $trs = $table.find('tbody tr');
-      var $tpl = $trs.last();
-			$focus = $(FOCUS_INPUT);
-			$table.after($focus);
+      var $final = $trs.last();
+
+      $focus = $(FOCUS_INPUT);
+      $table.after($focus);
       $table.data('eternal-focus-hack', $focus);
+
+      addListeners($final);
+
+      var $tpl = $final.clone();
       $table.data('eternal-template', $tpl);
+
+      function addListeners($last) {
+        $required = $last.find('[required]');
+
+        function rowFilled() {
+          var empty = 0;
+
+          $required.each(function() {
+            if($(this).is('input[type=radio], input[type=checkbox]')) {
+              // TODO
+              return;
+            }
+
+            if(!$(this).val()) {
+              empty++;
+            }
+
+          });
+
+          if(empty !== 0) {
+            return false;
+          }
+          if($(this).is('input[type=radio], input[type=checkbox]')) {
+            // TODO
+            return false
+          }
+          else if(!$(this).val()) {
+            return false;
+          }
+
+          return true;
+        }
+
+        $last.find('input, textarea, select').on('change', addRowIfNeeded);
+        $last.find('input, textarea, select').on('blur', setFocus);
+        var $tr = $last;
+
+        function setFocus() {
+          if($tr.is(':last-of-type')) {
+            if($tr.find('input, textarea, select').last()[0] === this) {
+              $focus.focus();
+            }
+          }
+        };
+
+        function addRowIfNeeded() {
+          if($tr.is(':last-of-type') && rowFilled.call(this)) {
+            $table.append($tpl.clone());
+          }
+        }
+
+      }
+
+
     });
 
     return this;
