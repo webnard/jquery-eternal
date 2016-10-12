@@ -1,0 +1,27 @@
+{
+  "name": "jquery-eternal",
+  "version": "1.0.0",
+  "description": "Automatically create new rows of tabular form data as data is entered.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+git@github.com:webnard/jquery-eternal.git"
+  },
+  "keywords": [
+    "jquery-plugin",
+    "ecosystem:jquery",
+    "table",
+    "data",
+    "spreadsheet",
+    "form"
+  ],
+  "author": "Ian Hunter <ian@ianhunter.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/webnard/jquery-eternal/issues"
+  },
+  "homepage": "https://github.com/webnard/jquery-eternal#readme"
+}

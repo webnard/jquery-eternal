@@ -1,0 +1,27 @@
+<!doctype html>
+
+<table>
+  <thead><th>Age</th><th>Sex</th><th>Location</th></thead>
+  <tbody>
+    <td><input type=number placeholder=Age name=age required></td>
+    <td>
+			<label><input type=radio name=sex value=M required>M</label>
+			<label><input type=radio name=sex value=F required>F</label>
+		</td>
+    <td>
+      <select name=location required>
+        <option value>Location</option>
+				<option value="AG">Antigua and Barbuda</option>
+				<option value="AR">Argentina</option>
+				<option value="AM">Armenia</option>
+				<option value="AW">Aruba</option>
+				<option value="AU">Australia</option>
+			</select>
+		</td>
+  </thead>
+</table>
+<script src="//code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="index.js"></script>
+<script>
+	$("table").eternal();
+</script>
