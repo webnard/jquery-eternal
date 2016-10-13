@@ -9,6 +9,7 @@
       $($tables.data('eternal-focus-hack')).destroy();
       $tables.removeData('eternal-focus-hack');
       $tables.removeData('eternal-template');
+      return this;
     }
 
     if(action === 'serialize') {
@@ -26,6 +27,7 @@
     $tables.data('eternal', true);
 
     $tables.each(function() {
+      var rows = 0;
       var $table = $(this);
       var $trs = $table.find('tbody tr');
       var $final = $trs.last();
@@ -87,6 +89,10 @@
         function addRowIfNeeded() {
           if($tr.is(':last-of-type') && rowFilled.call(this)) {
             var $added = $tpl.clone();
+            $added.find('[name]').each(function() {
+              $(this).attr('name', $(this).attr('name') + '__eter' + rows);
+            });
+            rows++;
             $table.append($added);
             addListeners($added);
           }
