@@ -71,15 +71,11 @@
         }
 
         $last.find('input, textarea, select').on('change', addRowIfNeeded);
-        $last.find('input, textarea, select').on('blur', setFocus);
+        $focus.on('focusin', setFocus);
         var $tr = $last;
 
         function setFocus() {
-          if($tr.is(':last-of-type')) {
-            if($tr.find('input, textarea, select').last()[0] === this) {
-              $focus.focus();
-            }
-          }
+          $last.find('input, textarea, select').first().focus();
         };
 
         function addRowIfNeeded() {
