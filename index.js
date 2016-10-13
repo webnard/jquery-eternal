@@ -1,4 +1,5 @@
 (function ( $ ) {
+  "use strict";
   var FOCUS_INPUT = '<input class="hack-fix-focus" type=text style="position:absolute; left:-10000px;">';
 
   $.fn.eternal = function(action) {
@@ -29,7 +30,7 @@
       var $trs = $table.find('tbody tr');
       var $final = $trs.last();
 
-      $focus = $(FOCUS_INPUT);
+      var $focus = $(FOCUS_INPUT);
       $table.after($focus);
       $table.data('eternal-focus-hack', $focus);
 
@@ -39,7 +40,7 @@
       $table.data('eternal-template', $tpl);
 
       function addListeners($last) {
-        $required = $last.find('[required]');
+        var $required = $last.find('[required]');
 
         function rowFilled() {
           var empty = 0;
@@ -75,12 +76,19 @@
         var $tr = $last;
 
         function setFocus() {
-          $last.find('input, textarea, select').first().focus();
+          setTimeout(function() {
+            $table
+              .find('tr').last()
+              .find('input, textarea, select').first()
+              .focus();
+          });
         };
 
         function addRowIfNeeded() {
           if($tr.is(':last-of-type') && rowFilled.call(this)) {
-            $table.append($tpl.clone());
+            var $added = $tpl.clone();
+            $table.append($added);
+            addListeners($added);
           }
         }
 
