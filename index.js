@@ -9,14 +9,7 @@
       $($tables.data('eternal-focus-hack')).destroy();
       $tables.removeData('eternal-focus-hack');
       $tables.removeData('eternal-template');
-      return this;
-    }
-
-    if(action === 'serialize') {
-      if(!$.fn.serializeObject) {
-        var url = 'https://github.com/macek/jquery-serialize-object';
-        throw new Error("Missing jQuery.serializeObject (" + url + ")");
-      }
+      $tables.removeData('eternal-rows');
       return this;
     }
 
@@ -27,7 +20,6 @@
     $tables.data('eternal', true);
 
     $tables.each(function() {
-      var rows = 0;
       var $table = $(this);
       var $trs = $table.find('tbody tr');
       var $final = $trs.last();
@@ -41,32 +33,40 @@
       var $tpl = $final.clone();
       $table.data('eternal-template', $tpl);
 
+      // must come after the template is created, otherwise the name attributes
+      // get munged
+      setNames($table);
+
       function addListeners($last) {
         var $required = $last.find('[required]');
 
         function rowFilled() {
           var empty = 0;
 
+          // TODO: use Array.some rather than going through every single input
           $required.each(function() {
-            if($(this).is('input[type=radio], input[type=checkbox]')) {
-              // TODO
-              return;
+            if($(this).is('input[type=radio]')) {
+              if(!$('[name="' + $(this).attr('name') + '"]').is(':checked')) {
+                empty++;
+                return;
+              }
             }
 
-            if(!$(this).val()) {
+            else if($(this).is('input[type=checkbox]')) {
+              if($(this).is(':not(:checked)')) {
+                empty++;
+                return;
+              }
+            }
+
+            else if(!$(this).val()) {
               empty++;
+              return;
             }
 
           });
 
           if(empty !== 0) {
-            return false;
-          }
-          if($(this).is('input[type=radio], input[type=checkbox]')) {
-            // TODO
-            return false
-          }
-          else if(!$(this).val()) {
             return false;
           }
 
@@ -89,10 +89,7 @@
         function addRowIfNeeded() {
           if($tr.is(':last-of-type') && rowFilled.call(this)) {
             var $added = $tpl.clone();
-            $added.find('[name]').each(function() {
-              $(this).attr('name', $(this).attr('name') + '__eter' + rows);
-            });
-            rows++;
+            setNames($table, $added);
             $table.append($added);
             addListeners($added);
           }
@@ -106,4 +103,22 @@
     return this;
 
   };
+
+  function setNames($owner, $trs) {
+    var rows = $owner.data('eternal-rows') || 0;
+    $trs = $trs || $owner.find('tr');
+    $trs.each(function() {
+      var found = false;
+      $(this).find('[name]').each(function() {
+        var name = 'data[' + rows + '][' + $(this).attr('name') + ']';
+        $(this).attr('name', name);
+        found = true;
+      });
+      if(found) {
+        rows++;
+      }
+    });
+    $owner.data('eternal-rows', rows);
+  }
+
 }( jQuery ));
