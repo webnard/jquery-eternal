@@ -1,0 +1,47 @@
+<!doctype html>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<div class=container>
+
+<form>
+<table class=table>
+  <thead><th>Name</th><th>Address</th><th>Order Number</th></thead>
+  <tbody>
+    <td><input type=text placeholder=Name name=name required></td>
+    <td><input type=text placeholder=Address name=address required></td>
+    <td><input type=text placeholder="#1234" name=order required></td>
+  </thead>
+</table>
+</form>
+
+<form>
+<table class=table>
+  <thead><th>Age</th><th>Sex</th><th>Location</th></thead>
+  <tbody>
+    <td><input type=number placeholder=Age name=age required></td>
+    <td>
+			<label><input type=radio name=sex value=M required>M</label>
+			<label><input type=radio name=sex value=F required>F</label>
+		</td>
+    <td>
+      <select name=location required>
+        <option value>Location</option>
+				<option value="AG">Antigua and Barbuda</option>
+				<option value="AR">Argentina</option>
+				<option value="AM">Armenia</option>
+				<option value="AW">Aruba</option>
+				<option value="AU">Australia</option>
+			</select>
+		</td>
+  </thead>
+</table>
+</form>
+
+<script src="//code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js" integrity="sha256-E8KRdFk/LTaaCBoQIV/rFNc0s3ICQQiOHFT4Cioifa8=" crossorigin="anonymous"></script>
+<script src="index.js"></script>
+<script>
+	$("table").eternal();
+</script>
