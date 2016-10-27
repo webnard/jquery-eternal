@@ -1,6 +1,6 @@
 {
   "name": "jquery-eternal",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Automatically create new rows of tabular form data as data is entered.",
   "main": "index.js",
   "scripts": {

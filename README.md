@@ -2,6 +2,8 @@ Automatically expand form tables with additional rows when all required fields
 have been filled in. Name attributes are automatically transformed to array-like
 syntax (for use with [PHP][2], [jQuery Serialize Object][1], etc).
 
+Install with `npm install jquery-eternal`
+
 Example:
 
 ```html

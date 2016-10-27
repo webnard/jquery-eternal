@@ -112,6 +112,12 @@
       $(this).find('[name]').each(function() {
         var name = 'data[' + rows + '][' + $(this).attr('name') + ']';
         $(this).attr('name', name);
+
+        // necessary if a table comes in with prepopulated fields
+        // of which radio button names in a row are repeated in a second row
+        if($(this).attr('checked')) {
+          this.checked = true;
+        }
         found = true;
       });
       if(found) {
