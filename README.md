@@ -49,7 +49,7 @@ and the DOM will automatically create more elements as needed.
       <td><input type='number' name='data[0][cost]' required value="9.99"></td>
     </tr>
     <tr>
-      <td><input name='data[0][title]' required></td>
+      <td><input name='data[1][title]' required></td>
       <td>
         <label><input type='radio' name='data[1][age]' value='used' required>Used</label>
         <label><input type='radio' name='data[1][age]' value='new' required>New</label>
