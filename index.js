@@ -137,7 +137,7 @@
     $trs.each(function() {
       var found = false;
       var idField = $owner.data('eternal-id-field');
-      if(idField && !$(this).find('[name=' + idField + ']')) {
+      if(idField && !$(this).find('[name=' + idField + ']').length) {
         $(this).find('td').first().prepend('<input type=hidden name="' + idField + '">');
       }
       $(this).find('[name]').each(function() {
