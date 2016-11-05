@@ -18,8 +18,9 @@
 
 <form>
 <table class=table>
-  <thead><th>Age</th><th>Sex</th><th>Location</th></thead>
+  <thead><th>ID</th><th>Age</th><th>Sex</th><th>Location</th></thead>
   <tbody>
+    <td><input type=text disabled name=myidfield></td>
     <td><input type=number placeholder=Age name=age required></td>
     <td>
 			<label><input type=radio name=sex value=M required>M</label>
@@ -39,9 +40,9 @@
 </table>
 </form>
 
-<script src="//code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js" integrity="sha256-E8KRdFk/LTaaCBoQIV/rFNc0s3ICQQiOHFT4Cioifa8=" crossorigin="anonymous"></script>
 <script src="index.js"></script>
 <script>
-	$("table").eternal();
+  $("table").eternal({'assignId': 'myidfield'});
 </script>

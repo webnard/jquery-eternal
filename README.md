@@ -1,3 +1,5 @@
+# Eternal Tables
+
 Automatically expand form tables with additional rows when all required fields
 have been filled in. Name attributes are automatically transformed to array-like
 syntax (for use with [PHP][2], [jQuery Serialize Object][1], etc).
@@ -59,6 +61,20 @@ and the DOM will automatically create more elements as needed.
   </table>
 </form>
 ```
+
+
+## API
+### `.eternal('destroy')`
+
+Stop appending rows to the table.
+
+### `.eternal(options)`
+
+Where options is passed on creation and is an object with one or more of these
+properties:
+
+* `assignId` - The name of an input to assign a UUID in each row.
+If the field is not found, a hidden input will be added with this name.
 
 See `demo.html` for additional examples.
 
